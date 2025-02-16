@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+{% comment %} <style>
+    .profile-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+
+    }
+</style>
+
+<h1>{{profile.username}}</h1>
+
+<div class="profile-container">
+    <div>
+
+        {% include "components/topic.html" %}
+    </div>
+    
+    
+    <div>
+        {% include "components/room_layout.html" %}
+        
+    </div>
+    
+    
+    <div>
+        {% include "components/activity.html" %}
+        
+    </div>
+</div> {% endcomment %}
+
+
+
+
+
+<main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      {% include "components/topic.html" %}
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              {% if profile.pic %}
+              <img src="{{ profile.pic.url }}" alt="Hello's profile picture" />
+              
+              {% else %}
+              <img src="{{ profile.username }}" alt="Hello's profile picture" />
+
+         
+          {% endif %}
+            </div>
+          </div>
+          <div class="profile__info">
+           
+            
+            <h3>{{profile.username}}</h3>
+            <p>@{{profile.username}}</p>
+            
+            
+            {% if request.user.id == profile.id %}
+            
+            
+            <a href="{% url "edit-profile" profile.id %}" class="btn btn--main btn--pill">Edit Profile</a>
+            
+            {% endif %}
+            
+          </div>
+          <div class="profile__about">
+            <h3>About</h3>
+            <p>
+              {{profile.bio}}
+            </p>
+          </div>
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            <h2>This profile belongs to {{profile.username}}</a>
+            </h2>
+          </div>
+        </div>
+        {% include "components/room_layout.html" %}
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      {% include "components/activity.html" %}
+      <!-- Activities End -->
+    </div>
+  </main>
+
+{% endblock content %}
+
+
+
+
+
+
