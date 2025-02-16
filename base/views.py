@@ -57,7 +57,7 @@ def room(request,pk):
 	context={'room':room,'messagess':messagess,'participants':participants,'form':form}
 	return render(request,"base/room.html",context)
 
-@login_required
+@login_required()
 
 def create_rooms(request):
 
@@ -92,7 +92,7 @@ def create_rooms(request):
 	context={'form':form,'topics':topics}
 	return render(request,"base/create_rooms.html",context)
 
-@login_required
+@login_required()
 def update_rooms(request,pk):
 	room=Room.objects.get(id=pk)
 	form=RoomForm(instance=room)
@@ -116,7 +116,7 @@ def update_rooms(request,pk):
 	return render(request,"base/update_rooms.html",context)
 
 
-@login_required
+@login_required()
 def delete_rooms(request,pk):
 	room=Room.objects.get(id=pk)
 	context={'room':room}
@@ -129,7 +129,7 @@ def delete_rooms(request,pk):
 		return redirect('home')
 	return render(request,"base/delete_rooms.html",context)
 
-
+@login_required()
 def delete_message(request,pk):
 	message=Message.objects.get(id=pk)
 	if request.user != message.user:
@@ -144,7 +144,7 @@ def delete_message(request,pk):
 	context={'room':message}
 	
 	return render(request,"base/delete_rooms.html",context)
-
+@login_required()
 def delete_topic(request,pk):
 	topic=Topic.objects.get(id=pk)
 	if request.user != topic.creator:

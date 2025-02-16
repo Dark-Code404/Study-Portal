@@ -2,34 +2,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-{% comment %} <style>
-    .profile-container{
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
-
-    }
-</style>
-
-<h1>{{profile.username}}</h1>
-
-<div class="profile-container">
-    <div>
-
-        {% include "components/topic.html" %}
-    </div>
-    
-    
-    <div>
-        {% include "components/room_layout.html" %}
-        
-    </div>
-    
-    
-    <div>
-        {% include "components/activity.html" %}
-        
-    </div>
-</div> {% endcomment %}
+ 
 
 
 
@@ -73,9 +46,11 @@
           </div>
           <div class="profile__about">
             <h3>About</h3>
+            {% if profile.bio %}
             <p>
               {{profile.bio}}
             </p>
+            {% endif %}
           </div>
         </div>
 
