@@ -19,6 +19,15 @@ class User(AbstractUser):
     REQUIRED_FIELDS=[]
 
 
+    def save(self, *args, **kwargs):
+        try:
+            this = User.objects.get(id=self.id)
+            if this.pic != self.pic:
+                this.pic.delete()
+        except: pass
+        super(User, self).save(*args, **kwargs)
+
+
 
 
 class Topic(models.Model):
