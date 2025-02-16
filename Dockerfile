@@ -20,9 +20,7 @@ COPY requirements.txt /app/
  
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-RUN python manage.py collectstatic --noinput
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+
  
 # Stage 2: Production stage
 FROM python:3.13-slim
@@ -52,4 +50,4 @@ USER appuser
 EXPOSE 8000 
  
 # Start the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "my_docker_django_app.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "room.wsgi:application"]
