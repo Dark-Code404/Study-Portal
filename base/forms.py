@@ -21,7 +21,11 @@ class RoomForm(ModelForm):
 class MessageForm(ModelForm):
     class Meta:
         model =Message
-        fields = ['body', 'image']
+        fields = ['body', 'image','file']
+        labels   ={
+            'image':'upload image',
+            'file':'upload file'
+        }
 
 
 class EditProfile(ModelForm):

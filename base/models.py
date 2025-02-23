@@ -65,6 +65,7 @@ class Message(models.Model):
     room=models.ForeignKey(Room,on_delete=models.CASCADE)
     body=models.TextField()
     image = models.ImageField(upload_to='message_images/', null=True, blank=True)
+    file=models.FileField(upload_to='files/',null=True,blank=True)
     updated=models.DateTimeField(auto_now=True)
     created=models.DateTimeField(auto_now_add=True)
 

@@ -48,6 +48,8 @@ def room(request,pk):
 			messagess.user=request.user
 			messagess.room=room
 			messagess.save()
+
+			
 		
 		else:
 			messages.error(request,"There was an error with your message. Please try again.")

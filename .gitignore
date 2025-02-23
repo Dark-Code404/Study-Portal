@@ -124,7 +124,6 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
-
 # SageMath parsed files
 *.sage.py
 
@@ -160,3 +159,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+
+
+staticfiles/

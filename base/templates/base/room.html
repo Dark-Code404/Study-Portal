@@ -75,7 +75,7 @@
           <div class="room__header scroll">
             <div class="room__info">
               <h3>{{room.name}}</h3>
-              <span>3 days ago</span>
+              <span>{{room.created|timesince}} ago</span>
             </div>
             <div class="room__hosted">
               <p>Hosted By</p>
@@ -120,12 +120,15 @@
                     {% endif %}
                 </div>
                 <div class="thread__details">
-                  {{msg.body}}
+                  {{msg.body|urlize}}
                 </div>
 
                 <div class="room__image-container">
                     {% if msg.image %}
                     <img src="{{ msg.image.url }}" alt="Message Image" style="max-width: 100%;">
+                    {% elif msg.file %}
+                    <a href="{{ msg.file.url }}" target="_blank">{{ msg.file.name }}</a>
+
                     {% endif %}
                 </div>
               </div>
@@ -137,7 +140,17 @@
         <div class="room__message">
           <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+
+           
+            
+            
+            {{ form.body}}
+            {{form.image.label}}
+            {{form.image}}
+            {{form.file.label}}
+            {{form.file}}
+            
+           
             <button type="submit">Send</button>
 
 
