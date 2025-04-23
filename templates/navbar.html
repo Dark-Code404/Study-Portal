@@ -7,7 +7,7 @@
   <div class="container">
     <a href="{% url "home" %}" class="header__logo">
       <img src="{% static "image/logo.svg" %}" />
-      <h1>My Room</h1>
+      <h1>Study Portal</h1>
     </a>
     
     {% include "base/search.html" %}
@@ -19,7 +19,8 @@
       <div class="header__user">
         <a href="{% url "profile" user.id %}">
           <div class="avatar avatar--medium active">
-            <img src="{{user.pic.url}}" alt="pics"/>
+            
+            <img src="{{user.pic.url}}" alt="{{user.username}}"/>
           </div>
           <p>{{request.user.username}} <span>@{{request.user.username}}</span></p>
         </a>

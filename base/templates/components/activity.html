@@ -46,7 +46,7 @@ replies to
                     </div>
         </div>
         <div class="activities__boxContent">
-            <p>replied to post “<a href="{% url "profile" msg.user.id %}">{{msg.room.name}}</a>”</p>
+            <p>replied to post “<a href="{% url "room" msg.room.id %}">{{msg.room.name}}</a>”</p>
             <div class="activities__boxRoomContent">
                 {{msg}}
             </div>

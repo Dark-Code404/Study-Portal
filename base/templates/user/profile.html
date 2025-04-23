@@ -45,8 +45,8 @@
             
           </div>
           <div class="profile__about">
-            <h3>About</h3>
             {% if profile.bio %}
+            <h3>About</h3>
             <p>
               {{profile.bio}}
             </p>
@@ -56,11 +56,14 @@
 
         <div class="roomList__header">
           <div>
-            <h2>This profile belongs to {{profile.username}}</a>
+            {% comment %} <h2>The rooms this profile associated to </a> {% endcomment %}
             </h2>
           </div>
         </div>
+        {% if rooms %}
+        <h2 >The rooms this profile has </a><br><br>
         {% include "components/room_layout.html" %}
+        {% endif %}
       </div>
       <!-- Room List End -->
 

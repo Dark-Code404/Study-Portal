@@ -31,7 +31,6 @@ def home(request):
 	dict={'rooms':rooms ,'topics':topics,'count':count,'recent_messages':recent_messages}
 	return render(request,"base/home.html",dict)
 
-# @login_required
 def room(request,pk):
 
 	
@@ -44,6 +43,15 @@ def room(request,pk):
 	if request.method=='POST':
 		form=MessageForm(request.POST,request.FILES)
 		if form.is_valid():
+
+			body = form.cleaned_data.get('body')
+			image = form.cleaned_data.get('image')
+			file = form.cleaned_data.get('file')
+			
+			if not body and not image and not file:
+				messages.error(request, "Please enter a message, or attach a file/image.")
+				return redirect('room', pk=room.id)
+			
 			messagess=form.save(commit=False)
 			messagess.user=request.user
 			messagess.room=room
@@ -141,7 +149,7 @@ def delete_message(request,pk):
 
 		message.delete()
 
-		return redirect('home')
+		return redirect('room', pk=message.room.id)
 	
 	context={'room':message}
 	

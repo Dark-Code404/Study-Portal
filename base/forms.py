@@ -32,5 +32,6 @@ class EditProfile(ModelForm):
     class Meta:
         model=User
         fields=['username','name','email','bio','pic']
+       
       
         
